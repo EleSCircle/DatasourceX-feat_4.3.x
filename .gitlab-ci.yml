@@ -1,0 +1,10 @@
+build:
+  stage: test
+  script:
+    - mvn clean verify -U -Dmaven.test.failure.ignore=true
+    - sonar-scanner
+    - sh ci/sonar_notify.sh
+  only:
+    - dev
+  tags:
+    - dt-insight
